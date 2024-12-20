@@ -1,10 +1,12 @@
-@app.route('/')
-def home():
-    return "Bienvenue sur votre API backend pour les soirées de stand-up!"
+
 
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bienvenue sur votre API backend pour les soirées de stand-up!"
 
 # Mock database structures
 users = []

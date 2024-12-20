@@ -48,3 +48,7 @@ def make_reservation():
         "message": "Reservation created successfully!",
         "reservation": data
     }), 201
+
+@app.route('/reservations', methods=['GET'])
+def get_reservations():
+    return jsonify({"reservations": reservations}), 200

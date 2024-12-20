@@ -36,14 +36,15 @@ def create_slot():
 def view_slots():
     return jsonify({"slots": slots}), 200
 
-# Endpoint: Make a Reservation
 @app.route('/reservations', methods=['POST'])
 def make_reservation():
     data = request.json
+    if 'user_id' not in data or 'slot_id' not in data:
+        return jsonify({"error": "Missing user_id or slot_id"}), 400
     reservation_id = len(reservations) + 1
     data['id'] = reservation_id
     reservations.append(data)
-    return jsonify({"message": "Reservation created successfully!", "reservation": data}), 201
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    return jsonify({
+        "message": "Reservation created successfully!",
+        "reservation": data
+    }), 201
